@@ -13,11 +13,9 @@
 # This script was written by Chiara Crestani 20200421
 #####
 
-# Import libraries (not all libraries have been used at this stage)
+# Import libraries
 import pandas as pd
-import numpy as np
 from Bio import SeqIO
-from Bio.Blast import NCBIXML
 
 # Create a dataframe (df) from the tabular blast output file. The header will match the command given for the blast search.
 
