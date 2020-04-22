@@ -6,8 +6,8 @@
 # contain multiple search sequences.
 # The command to execture the BLAST search is:
 #
-# blastn -query Multifasta.fasta -db ./Capsular_serotype_GBS/Metcalf_serotypes.fasta -outfmt "6 qseqid sseqid stitle 
-# pident qcovs length slen mismatch gapopen qstart qend sstart send evalue bitscore" -evalue 0.00001 -num_threads 4 
+# blastn -query Multifasta.fasta -db ./Capsular_serotype_GBS/Metcalf_serotypes.fasta -outfmt "6 qseqid sseqid stitle
+# pident qcovs length slen mismatch gapopen qstart qend sstart send evalue bitscore" -evalue 0.00001 -num_threads 4
 # -out rel_BLAST_results.txt
 #
 # This script was written by Chiara Crestani 20200421
@@ -16,6 +16,18 @@
 # Import libraries
 import pandas as pd
 from Bio import SeqIO
+import argparse
+
+# Script flags and messages
+
+parser = argparse.ArgumentParser(description='Convert the tabular output (outfmt 6) from a blastn search into a presence/absence matrix.')
+parser.add_argument('-pident', default=90, type=int, help='insert a percentage of identity from 0 to 100 (default: 90)')
+parser.add_argument('-qcov', default=80, type=int, help='insert a percentage of identity from 0 to 100 (default: 80)')
+
+args = parser.parse_args()
+
+pident = args.pident
+qcov = args.qcov
 
 # Create a dataframe (df) from the tabular blast output file. The header will match the command given for the blast search.
 
@@ -23,7 +35,7 @@ with open('rel_BLAST_results.txt', 'r') as infile: #opening text file for readin
     col_names=['qseqid','sseqid','stitle','pident','qcovs','length','slen','mismatch','gapopen','qstart','qend','sstart','send','evalue','bitscore']
     df = pd.read_csv(infile, sep='\t', header=None, names=col_names)
 
-    
+
 # Add a column that calculates and gives the query coverage as a percentage
 
 df['qcov'] = df['length'] / df['slen']*100
@@ -31,7 +43,7 @@ df['qcov'] = df['length'] / df['slen']*100
 
 # Filter the dataframe based on minimum thresholds for percentage of identity and query coverage
 
-df_fil = df[(df['pident'] >= 94) & (df['qcov'] >= 99)] #these will be substituted with variables given with flags
+df_fil = df[(df['pident'] >= pident) & (df['qcov'] >= qcov)] #these will be substituted with variables given with flags
 
 
 # A dataframe grouping a list of positive results per query sequence id is created.
@@ -70,7 +82,7 @@ res_col = df_fil['sseqid'].unique().tolist()
 pa_matrix[res_col] = pa_matrix[res_col].astype(int)
 
 
-# The matrix is saved as a csv file 
+# The matrix is saved as a csv file
 
 with open('matrix.csv', 'w') as csv:
     pa_matrix.to_csv(csv, index=False)
