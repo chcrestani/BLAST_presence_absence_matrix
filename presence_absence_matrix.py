@@ -13,15 +13,16 @@
 # This script was written by Chiara Crestani 20200421
 #####
 
+
 # Import libraries
 import pandas as pd
 from Bio import SeqIO
 
+
 # Create a dataframe (df) from the tabular blast output file. The header will match the command given for the blast search.
 
-with open('rel_BLAST_results.txt', 'r') as infile: #opening text file for reading (r)
-    col_names=['qseqid','sseqid','stitle','pident','qcovs','length','slen','mismatch','gapopen','qstart','qend','sstart','send','evalue','bitscore']
-    df = pd.read_csv(infile, sep='\t', header=None, names=col_names)
+col_names=['qseqid','sseqid','stitle','pident','qcovs','length','slen','mismatch','gapopen','qstart','qend','sstart','send','evalue','bitscore']
+df = pd.read_csv('rel_BLAST_results.txt', sep='\t', header=None, names=col_names)
 
     
 # Add a column that calculates and gives the query coverage as a percentage
@@ -31,7 +32,7 @@ df['qcov'] = df['length'] / df['slen']*100
 
 # Filter the dataframe based on minimum thresholds for percentage of identity and query coverage
 
-df_fil = df[(df['pident'] >= 94) & (df['qcov'] >= 99)] #these will be substituted with variables given with flags
+df_fil = df[(df['pident'] >= 94) & (df['qcov'] >= 99)]
 
 
 # A dataframe grouping a list of positive results per query sequence id is created.
