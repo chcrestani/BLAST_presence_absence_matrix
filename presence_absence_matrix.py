@@ -9,7 +9,7 @@
 # The command to execture the BLAST search is:
 #
 # blastn -query Multifasta.fasta -db ./Metcalf_serotypes.fasta
-# -outfmt "6 qseqid sseqid stitle pident qcovs length slen mismatch
+# -outfmt "6 qseqid sseqid stitle pident qcovs length qlen mismatch
 # gapopen qstart qend sstart send evalue bitscore" -evalue 0.00001
 # -num_threads 4 -out rel_BLAST_results.txt
 ######
@@ -52,7 +52,7 @@ df = pd.read_csv('rel_BLAST_results.txt',
 
 # Add a column that calculates and gives the query coverage
 # as a percentage
-df['qcov'] = df['length'] / df['slen']*100
+df['qcov'] = 100 * (df['qend']-df['qstart']) / df['qlen']
 
 # Filter the dataframe based on minimum thresholds for percentage
 # of identity and query coverage
