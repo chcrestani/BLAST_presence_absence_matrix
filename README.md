@@ -7,4 +7,7 @@ The database for the blast search is a multifasta file of reference sequences/ge
 The **command used to execute the BLASt search must be the following**: 
 
 ```bash
-blastn -query Metcalf_serotypes.fasta -db ./Multifasta.fasta -outfmt "6 qseqid sseqid stitle pident qcovs length qlen mismatch gapopen qstart qend sstart send evalue bitscore"-evalue 0.00001 -num_threads 4 -out rel_BLAST_results.txt```
+blastn -query Metcalf_serotypes.fasta -db ./Multifasta.fasta -outfmt "6 qseqid sseqid stitle pident qcovs length qlen mismatch gapopen qstart qend sstart send evalue bitscore"-evalue 0.00001 -num_threads 4 -out rel_BLAST_results.txt
+```
+
+This is because the script will identify the same columns as in the command above.
