@@ -26,7 +26,9 @@ To run the script, simply type:
 ```bash
 presence_absence_matritx.py
 ```
-
-Options:
--pident 
--qcov     
+```bash
+Optional arguments:
+  -h, --help      show this help message and exit
+  -pident PIDENT  insert a percentage of identity from 0 to 100 (default: 90)
+  -qcov QCOV      insert a percentage of identity from 0 to 100 (default: 80)
+ ```
