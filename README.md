@@ -16,6 +16,7 @@ This is because the script will identify the same columns as in the command abov
 
 * Biopython v1.76
 * pandas v1.0.3
+
 An exaple environment is given as yml file.
 
 ## Running the script
