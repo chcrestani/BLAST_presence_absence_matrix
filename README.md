@@ -11,3 +11,10 @@ blastn -query Metcalf_serotypes.fasta -db ./Multifasta.fasta -outfmt "6 qseqid s
 ```
 
 This is because the script will identify the same columns as in the command above.
+
+## Dependencies
+
+* Biopython
+* pandas
+
+## Running the script
