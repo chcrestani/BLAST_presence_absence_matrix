@@ -1,6 +1,6 @@
 # BLAST presence absence matrix
 
-This script takes the output file (format 6, tabolar) from a blast search (can be blastn, blastp or blastx) and converts it into a **presence-absence matrix of 0 and 1**.
+This script takes the output file from a blast search (format 6, tabular) and converts it into a **presence-absence matrix of 0 and 1**.
 
 The database for the blast search is a multifasta file of reference sequences/genome assemblies (named 'Multifasta.fasta'). The query for the blast search can contain multiple query sequences (example is given of results obtained with a file containing serotype sequences).
 
