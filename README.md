@@ -2,7 +2,7 @@
 
 This script takes the output file (format 6, tabolar) from a blast search (can be blastn, blastp or blastx) and converts it into a **presence-absence matrix of 0 and 1**.
 
-The database for the blast search is a multifasta file of reference sequences/genome assemblies (here named 'Multifasta.fasta'). The query for the blast search can contain multiple query sequences (example is given of results obtained with a file containing serotype sequences).
+The database for the blast search is a multifasta file of reference sequences/genome assemblies (named 'Multifasta.fasta'). The query for the blast search can contain multiple query sequences (example is given of results obtained with a file containing serotype sequences).
 
 The **command used to execute the BLASt search must be the following**: 
 
@@ -26,6 +26,8 @@ To run the script, simply type:
 ```bash
 presence_absence_matritx.py
 ```
+The script must be run in the same folder where the database (named Multifasta.fasta) and the blast output (named rel_BLAST_results.txt) are stored.
+
 ```bash
 Optional arguments:
   -h, --help      show this help message and exit
