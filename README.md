@@ -14,7 +14,19 @@ This is because the script will identify the same columns as in the command abov
 
 ## Dependencies
 
-* Biopython
-* pandas
+* Biopython v1.76
+* pandas v1.0.3
+An exaple environment is given as yml file.
 
 ## Running the script
+
+Make sure to change the location of your python in the first line of code, after the shebang.
+To run the script, simply type:
+
+```bash
+presence_absence_matritx.py
+```
+
+Options:
+-pident 
+-qcov     
